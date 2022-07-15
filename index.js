@@ -1,35 +1,34 @@
-console.log('Hello World');
+class Usuario {
+    constructor(nombre, apellido, libros, mascotas) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.libros = libros;
+        this.mascotas = mascotas;
+    }
+    getFullName() {
+        return console.log(`${this.nombre} ${this.apellido}`);
+    }
+    addMascota(mascotas) {
+        this.mascotas.push('Pajaro');
+        return console.log(this.mascotas)
+    }
+    countMascotas(mascotas) {
+        return console.log(this.mascotas.length);
+    }
+    addLibro(libros) {        
+        this.libros.push({titulo: 'Harry Potter', autor: 'J.K. Rowling'}) 
+        return console.log(this.libros);
+    }
 
-let nombre = 'Lucas';
-let apellido = 'Peñalba';
-
-let libros = { nombre: 'El señor de los anillos', autor: 'J.R.R. Tolkien' };
-
-let mascotas = ['Perro', 'Gato', 'Caballo'];
-
-function getFullName() {
-    return console.log(`${nombre} ${apellido}`);
+    getBooksName() {    
+        return console.log(this.libros.nombre);
+    }
 }
 
-getFullName();
+const usuario = new Usuario('Lucas', 'Peñalba', { titulo: 'El señor de los anillos', autor: 'J.R.R. Tolkien' }, ['Perro', 'Gato', 'Caballo']);
 
-function addMascota(mascotas) {
-    mascotas.push('Pajaro');
-    return console.log(mascotas)
-}
-
-addMascota(mascotas);
-
-function countMascotas(mascotas) {
-    return console.log(mascotas.length);
-}
-
-countMascotas(mascotas);
-
-function addLibro(libros) {
-    libros.nombre = 'Harry Potter';
-    libros.autor = 'J.K. Rowling';
-    return console.log(libros);
-}
-
-addLibro(libros);
+usuario.getFullName();
+usuario.addMascota();
+usuario.countMascotas();
+usuario.getBooksName();
+usuario.addLibro();
