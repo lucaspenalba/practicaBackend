@@ -43,6 +43,7 @@ class Contenedor {
             let json = JSON.parse(data);
             if (json.length) {
                 console.log(json);
+                return json;
             } else {
                 console.log('No hay registros');
             }
@@ -84,12 +85,13 @@ class Contenedor {
         }
     }
 
-    async ramdom() {
+    async random() {
         try{
-            let data = await fs.promises.readFile(this.ruta, 'utf8');
-            let json = JSON.parse(data);
-            let random = Math.floor(Math.random() * json.length);
+            const data = await fs.promises.readFile(this.ruta, 'utf8');
+            const json = JSON.parse(data);
+            const random = Math.floor(Math.random() * json.length);
             console.log(json[random]);
+            return json[random];
         } catch(error) {
             console.log(error);
         }
