@@ -34,14 +34,15 @@ routerProductos.post('/', (req, res) => {
 routerProductos.get('/', async (req, res) =>{
     const productos = await contenedor.getAll()
     console.log(productos);
-    res.send(productos)
+    res.json(productos)
 })
 
 
 routerProductos.get('/:id' ,async (req, res) =>{
-    const productos = await contenedor.getAll()
+    const { id } = req.params;
+    const productos = await contenedor.getById(id)
     console.log(productos);
-    res.send(productos)
+    res.json(productos)
 }) 
 
 
@@ -53,6 +54,12 @@ routerProductos.put('/:id', (req, res)=>{
     res.json({respuesta})
 
 } )
+
+routerProductos.delete('/:id', async (req, res) => {
+	const { id } = req.params;
+	contenedor.deleteById(parseInt(id));
+	res.json({ message: "Producto eliminado" });
+})
 
 
 
