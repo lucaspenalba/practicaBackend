@@ -101,13 +101,14 @@ class Contenedor {
         try{
             let data = await fs.promises.readFile(this.ruta, 'utf8');
             let json = JSON.parse(data);
-            let result = json.find(item => item.id === obj.id);
-            if (result) {
-                let newJson = json.map(item => item.id === obj.id ? {...item, ...obj} : item);
-                await fs.promises.writeFile(this.ruta, JSON.stringify(newJson, null, 2));
-                console.log('Registro actualizado');
+            let result = json.findIndex(item => item.id === obj.id);
+            if (result !== -1) {
+                json[result] = obj;
+                await fs.promises.writeFile(this.ruta, JSON.stringify(json, null, 2));
+                return {message: 'Registro actualizado'};
             } else {
-                console.log('No existe el registro');
+
+                return {error: 'No existe el registro'};
             }
         } catch(error) {
             console.log(error);
