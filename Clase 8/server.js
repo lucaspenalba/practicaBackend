@@ -19,7 +19,23 @@ const { Router} = express
 
 const routerProductos = Router()
 
-routerProductos.post('/', (req, res) => {
+
+routerProductos.get('/',  (req, res) =>{
+    console.log(contenedor);
+    const productos =  contenedor.getAll()
+    console.log(productos);
+    res.json({productos})
+})
+
+
+routerProductos.get('/:id' , (req, res) =>{
+    const id = parseInt(req.params.id);
+    const productos = contenedor.getById(id)
+    console.log(productos);
+    res.json(productos)
+}) 
+
+routerProductos.post('/productos', (req, res) => {
     const producto = req.body
     contenedor.save(producto)
         .then(() => {
@@ -31,19 +47,7 @@ routerProductos.post('/', (req, res) => {
 }  )
 
 
-routerProductos.get('/', async (req, res) =>{
-    const productos = await contenedor.getAll()
-    console.log(productos);
-    res.json(productos)
-})
 
-
-routerProductos.get('/:id' ,async (req, res) =>{
-    const { id } = req.params;
-    const productos = await contenedor.getById(id)
-    console.log(productos);
-    res.json(productos)
-}) 
 
 
 routerProductos.put('/:id', (req, res)=>{
@@ -55,7 +59,7 @@ routerProductos.put('/:id', (req, res)=>{
 
 } )
 
-routerProductos.delete('/:id', async (req, res) => {
+routerProductos.delete('/:id', (req, res) => {
 	const { id } = req.params;
 	contenedor.deleteById(parseInt(id));
 	res.json({ message: "Producto eliminado" });
