@@ -1,0 +1,16 @@
+extends layout.pug
+block content
+    h1(class="display-1") Pug
+    form(action='/productos', method='POST')
+        p
+            | Nombre: 
+            input(name='title', value='', type='text' class="form-control form-control-lg")
+            | Autor: 
+            input(name='author', value='', type='text' class="form-control form-control-lg")
+            | Cantidad: 
+            input(name='quantity', value='', type='text' class="form-control form-control-lg")
+            | Precio: 
+            input(name='price', value='', type='text' class="form-control form-control-lg" )
+            | Url  de imagen: 
+            input(name='thumbnail', value='', type='text' class="form-control form-control-lg")
+        input(value='Submit', type='submit' class="btn btn-outline-success mt-3")
